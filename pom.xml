@@ -31,6 +31,8 @@
                         <environment>Sandbox</environment>
                         <target>Cloudhub-US-East-2</target>
                         <muleVersion>4.9.11</muleVersion>
+                        <connectedAppClientId>92f5c8e99d7a489aa8c27ca3c61c5e0e</connectedAppClientId>
+                        <connectedAppClientSecret>1CcB0637BAcD4a64B95D840ca77f8ede</connectedAppClientSecret>
                         <connectedAppGrantType>client_credentials</connectedAppGrantType>
                         <applicationName>${project.artifactId}</applicationName>
                         <replicas>1</replicas>
