@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
@@ -24,9 +24,6 @@ jobs:
           distribution: "zulu"
           java-version: 8
 
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy to CloudHub
         env:
           USERNAME: ${{ secrets.ANYPOINT_PLATFORM_USERNAME }}
