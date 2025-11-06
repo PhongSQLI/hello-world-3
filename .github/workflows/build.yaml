@@ -26,9 +26,9 @@ jobs:
 
       - name: Deploy to CloudHub
         env:
-          USERNAME: ${{ secrets.ANYPOINT_PLATFORM_USERNAME }}
-          PASSWORD: ${{ secrets.ANYPOINT_PLATFORM_PASSWORD }}
+          ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+          SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
-          -Danypoint.username="$USERNAME" \
-          -Danypoint.password="$PASSWORD"
+          -Dclient.id="$ID" \
+          -Dclient.secret="$SECRET"
