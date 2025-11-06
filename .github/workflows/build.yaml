@@ -25,10 +25,7 @@ jobs:
           java-version: 8
 
       - name: Deploy to CloudHub
-        env:
-          ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
-          SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
-          -Dclient.id="$ID" \
-          -Dclient.secret="$SECRET"
+          -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
+          -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
