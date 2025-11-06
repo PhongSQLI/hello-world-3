@@ -14,11 +14,5 @@
       <username>~~~Client~~~</username>
       <password>${clientId}~?~${clientSecret}</password>
     </server>
-
-    <server>
-      <id>anypoint-exchange-v3</id>
-      <username>~~~Client~~~</username>
-      <password>${clientId}~?~${clientSecret}</password>
-    </server>
   </servers>
 </settings>
