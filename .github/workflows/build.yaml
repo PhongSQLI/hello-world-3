@@ -2,7 +2,9 @@ name: Deploy to CloudHub 2.0
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
+    tags:
+      - 'v*.*.*'
 
 jobs:
   deploy:
