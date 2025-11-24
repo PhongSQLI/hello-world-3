@@ -37,9 +37,11 @@ jobs:
 
       - name: Deploy to CloudHub
         run: |
+          echo "Deploying to $DEPLOY_ENV environment"
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
           -Denvironment=$DEPLOY_ENV \
           -DclientId=$CLIENT_ID\
           -DclientSecret=$CLIENT_SECRET
+          
     
     
