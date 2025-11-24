@@ -12,6 +12,7 @@ jobs:
   deploy:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'Production' || 'Sandbox' }}
     env:
       DEPLOY_ENV: ${{ github.ref == 'refs/heads/main' && 'Production' || 'Sandbox' }}
       CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
