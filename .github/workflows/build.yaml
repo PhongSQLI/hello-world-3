@@ -14,6 +14,7 @@ on:
 
 jobs:
   deploy:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'develop'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
@@ -33,8 +34,10 @@ jobs:
           java-version: 17
 
       - name: Deploy to CloudHub
+        env:
+          DEPLOY_ENV: if github.ref == 'develop' then 'Sandbox' else 'Design'
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
-          -Denvironment="Production" \
+          -Denvironment="$DEPLOY_ENV" \
           -DclientId="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -DclientSecret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
