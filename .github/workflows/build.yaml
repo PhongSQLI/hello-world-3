@@ -34,7 +34,7 @@ jobs:
 
       - name: Deploy to CloudHub
         env:
-          DEPLOY_ENV: ${{ github.ref_name == 'develop' && 'Design' || 'Sandbox' }}
+          DEPLOY_ENV: ${{ github.ref_name == 'develop' && 'Sandbox' || 'Design' }}
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
           -Denvironment="$DEPLOY_ENV" \
