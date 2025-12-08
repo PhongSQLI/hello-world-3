@@ -6,6 +6,5 @@
         <http:listener config-ref="Listener-config" doc:id="kqutes" doc:name="Listener" path="/test"></http:listener>
         <set-payload doc:id="pvtmfo" doc:name="Set payload" value="Hello World !!! "></set-payload>
         <logger doc:id="kfcvwr" doc:name="Logger" message="#[payload]"></logger>
-        <logger doc:name="Logger" doc:id="qmwfru" message="End of flow"/>
     </flow>
 </mule>
