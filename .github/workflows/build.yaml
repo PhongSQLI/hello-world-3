@@ -2,7 +2,15 @@ name: Deploy to CloudHub 2.0
 
 on:
   push:
-    branches: [main]
+    branches:
+      - develop
+    tags:
+      - "v*.*.*"
+
+  pull_request:
+    branches: [main, develop]
+    types:
+      - closed
 
 jobs:
   deploy:
@@ -25,7 +33,12 @@ jobs:
           java-version: 8
 
       - name: Deploy to CloudHub
+        env:
+          DEPLOY_ENV: ${{ github.ref_name == 'develop' && 'Sandbox' || 'Design' }}
+          APP_SUFFIX: ${{ github.ref_name == 'develop' && '-dev' || '' }}
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
+          -Denvironment="$DEPLOY_ENV" \
+          -DappNameSuffix="$APP_SUFFIX" \
           -DclientId="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -DclientSecret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"

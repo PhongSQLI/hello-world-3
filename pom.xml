@@ -34,7 +34,7 @@
                         <connectedAppClientId>${clientId}</connectedAppClientId>
                         <connectedAppClientSecret>${clientSecret}</connectedAppClientSecret>
                         <connectedAppGrantType>client_credentials</connectedAppGrantType>
-                        <applicationName>${project.artifactId}</applicationName>
+                        <applicationName>${project.artifactId}${appNameSuffix}</applicationName>
                         <replicas>1</replicas>
                         <vCores>0.1</vCores>
                         <deploymentSettings>
