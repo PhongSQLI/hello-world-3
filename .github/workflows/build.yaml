@@ -14,7 +14,7 @@ on:
 
 jobs:
   deploy:
-    environment: ${{ github.ref_name == 'develop' && 'Sandbox' || 'Production' }}
+    environment: Sandbox
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
