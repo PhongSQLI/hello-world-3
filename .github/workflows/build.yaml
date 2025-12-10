@@ -9,12 +9,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: Sandbox
+    environment: ${{ github.ref_name == 'develop' && 'Sandbox' || 'Production' }}
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v4
       
-      - name: Cache dependencies
+      - name: Cache dependenciesca
         uses: actions/cache@v4
         with:
           path: ~/.m2/repository
@@ -28,11 +28,9 @@ jobs:
           java-version: 17
 
       - name: Deploy to CloudHub 2.0
-        env:
-          APP_SUFFIX: ${{ github.ref_name == 'develop' && '-dev' || '' }}
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
-          -Denv="Sandbox" \
-          -DappNameSuffix="$APP_SUFFIX" \
+          -Denv="${{ vars.ENV }}" \
+          -DappNameSuffix="${{ vars.APP_SUFFIX }}"" \
           -DclientId="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -DclientSecret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
